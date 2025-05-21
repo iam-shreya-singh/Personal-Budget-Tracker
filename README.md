@@ -11,11 +11,11 @@ git clone https://github.com/iam-shreya-singh/Personal-Budget-Tracker.git
 cd Personal-Budget-Tracker
 
 # **Key Features**
-Token‑based login (Simple‑JWT)
-CRUD transactions with category tags & amount validation
-Monthly budget target per user
-Filter + paginated transaction list
-Dashboard & Budget vs Spend visualized in interactive D3.js charts
+* Token‑based login (Simple‑JWT)
+* CRUD transactions with category tags & amount validation
+* Monthly budget target per user
+* Filter + paginated transaction list
+* Dashboard & Budget vs Spend visualized in interactive D3.js charts
 
 
 
