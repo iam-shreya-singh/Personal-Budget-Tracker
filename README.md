@@ -17,5 +17,16 @@ cd Personal-Budget-Tracker
 * Filter + paginated transaction list
 * Dashboard & Budget vs Spend visualized in interactive D3.js charts
 
+  # Auth System Setup
+
+- Implemented JWT-based login using Django REST Framework + SimpleJWT
+- API endpoint `/api/token/` returns valid access & refresh tokens
+- Auth tested via Postman using Codespaces public URL
+- Environment: GitHub Codespaces + Django 5 + REST Framework
+- Superuser credentials:
+  - Username: `user1`
+  - Password: `spaceuser123`
+
+
 
 
