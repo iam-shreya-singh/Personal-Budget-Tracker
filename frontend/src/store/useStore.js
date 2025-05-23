@@ -1,18 +1,29 @@
+// src/store.js
 import create from 'zustand';
-import { fetchTransactions, createTransaction } from './api';
+import axios from 'axios';
+import API_BASE_URL from './config';
 
 const useStore = create((set) => ({
   transactions: [],
-  setTransactions: (transactions) => set({ transactions }),
+  
   fetchTransactions: async () => {
-    const data = await fetchTransactions();
-    set({ transactions: data });
+    try {
+      const response = await axios.get(`${API_BASE_URL}/transactions/`);
+      set({ transactions: response.data });
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+    }
   },
+
   addTransaction: async (transaction) => {
-    const newTransaction = await createTransaction(transaction);
-    set((state) => ({
-      transactions: [...state.transactions, newTransaction]
-    }));
+    try {
+      const response = await axios.post(`${API_BASE_URL}/transactions/`, transaction);
+      set((state) => ({
+        transactions: [...state.transactions, response.data],
+      }));
+    } catch (error) {
+      console.error('Error adding transaction:', error);
+    }
   },
 }));
 

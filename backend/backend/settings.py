@@ -56,7 +56,6 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://supreme-space-dollop-64p5gr456r5hr59p-5174.app.github.dev/',
 ]
 
 ROOT_URLCONF = "backend.urls"
