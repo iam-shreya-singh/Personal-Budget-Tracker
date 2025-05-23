@@ -1,15 +1,21 @@
-import axios from 'axios';
+import axios from "axios"
 
-const API_URL = 'https://personal-budget-tracker-lss5.onrender.com';  // Backend URL
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = "https://personal-budget-tracker-lss5.onrender.com/api/finance/"
 
+export const fetchTransactions = async (token) => {
+  const response = await axios.get(`${API_URL}transactions/`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response.data
+}
 
-export const fetchTransactions = async () => {
-  const response = await axios.get(`${API_URL}transactions/`);
-  return response.data;
-};
-
-export const fetchBudget = async () => {
-  const response = await axios.get(`${API_URL}budgets/`);
-  return response.data;
-};
+export const fetchBudget = async (token) => {
+  const response = await axios.get(`${API_URL}budgets/`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response.data
+}
