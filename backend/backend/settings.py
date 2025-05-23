@@ -26,8 +26,11 @@ SECRET_KEY = "django-insecure-q7^q%wcpxh$1=ju5*ew7k!^^jy^3wtiv_ifo*hsl3(mdl(8q7g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "personal-budget-tracker-lss5.onrender.com",
+]
 
 # Application definition
 
