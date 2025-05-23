@@ -1,5 +1,10 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import TransactionViewSet
+
+router = DefaultRouter()
+router.register("transactions", TransactionViewSet)
 
 urlpatterns = [
-    # to be adding API endpoints like /transactions/ here later
+    path("", include(router.urls)),
 ]
