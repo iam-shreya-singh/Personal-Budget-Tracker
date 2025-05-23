@@ -59,9 +59,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://personal-budget-tracker-lss5.onrender.com/",
+    "https://personal-budget-tracker-lss5.onrender.com",
+    "http://localhost:5173",  # local frontend dev
 ]
-
 ROOT_URLCONF = "backend.urls"
 
 TEMPLATES = [
