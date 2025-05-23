@@ -1,27 +1,36 @@
-import { useEffect } from "react"
-import useStore from "../store/useStore"
-import axios from "axios"
+import React, { useEffect } from 'react';
+import useStore from './store';
 
-export default function TransactionList() {
-  const token = useStore((s) => s.token)
-  const transactions = useStore((s) => s.transactions)
-  const setTransactions = useStore((s) => s.setTransactions)
+const TransactionList = () => {
+  const { transactions, fetchTransactions, addTransaction } = useStore();
 
   useEffect(() => {
-    if (!token) return
-    axios.get("/api/finance/transactions/", {
-      headers: { Authorization: `Bearer ${token}` }
-    }).then(res => setTransactions(res.data))
-  }, [token])
+    fetchTransactions();  // Fetch transactions on component mount
+  }, [fetchTransactions]);
+
+  const handleAddTransaction = () => {
+    const newTransaction = {
+      amount: 100,
+      category: 'income',
+      description: 'Salary',
+      date: '2025-05-23',
+    };
+    addTransaction(newTransaction);
+  };
 
   return (
-    <ul className="space-y-2">
-      {transactions.map(tx => (
-        <li key={tx.id} className="flex justify-between border-b p-2">
-          <span>{tx.note}</span>
-          <span className="text-emerald-600 font-medium">₹{tx.amount}</span>
-        </li>
-      ))}
-    </ul>
-  )
-}
+    <div>
+      <h1>Transactions</h1>
+      <button onClick={handleAddTransaction}>Add Transaction</button>
+      <ul>
+        {transactions.map((transaction) => (
+          <li key={transaction.id}>
+            {transaction.description} - ${transaction.amount}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default TransactionList;
