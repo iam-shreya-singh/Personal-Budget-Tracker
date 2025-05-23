@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite"  
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,8 @@
     "zustand": "^5.0.5"
   },
   "devDependencies": {
-    "vite": "^6.3.5" 
+    "@vitejs/plugin-react": "^4.5.0",
+    "vite": "^6.3.5"
   },
-  "proxy": "https://supreme-space-dollop-64p5gr456r5hr59p-8000.app.github.dev/"  
+  "proxy": "https://supreme-space-dollop-64p5gr456r5hr59p-8000.app.github.dev/"
 }
