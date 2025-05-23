@@ -1,28 +1,44 @@
-// src/store.js
-import create from 'zustand';
+// src/store/useStore.js
+import { create } from 'zustand';
 import axios from 'axios';
-//import API_BASE_URL from './config';
 
-const useStore = create((set) => ({
+const API_URL = 'https://personal-budget-tracker-lss5.onrender.com/api/finance/';
+
+const useStore = create((set, get) => ({
+  token: null, // optional auth setup
   transactions: [],
-  
+
+  setToken: (token) => set({ token }),
+
   fetchTransactions: async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/transactions/`);
+      const response = await axios.get(`${API_URL}transactions/`, {
+        headers: {
+          Authorization: `Bearer ${get().token}`,
+        },
+      });
       set({ transactions: response.data });
     } catch (error) {
-      console.error('Error fetching transactions:', error);
+      console.error('Failed to fetch transactions:', error);
     }
   },
 
-  addTransaction: async (transaction) => {
+  addTransaction: async (newTxn) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/transactions/`, transaction);
+      const response = await axios.post(
+        `${API_URL}transactions/`,
+        newTxn,
+        {
+          headers: {
+            Authorization: `Bearer ${get().token}`,
+          },
+        }
+      );
       set((state) => ({
         transactions: [...state.transactions, response.data],
       }));
     } catch (error) {
-      console.error('Error adding transaction:', error);
+      console.error('Failed to add transaction:', error);
     }
   },
 }));

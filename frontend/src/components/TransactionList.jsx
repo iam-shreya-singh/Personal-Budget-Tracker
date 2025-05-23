@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import useStore from './store';
+import { useEffect } from "react";
+import useStore from "./store";
 
 const TransactionList = () => {
-  const { transactions, fetchTransactions, addTransaction } = useStore();
+  const { transactions, fetchTransactions, addTransaction, token } = useStore();
 
   useEffect(() => {
-    fetchTransactions();  // Fetch transactions on component mount
-  }, [fetchTransactions]);
+    if (token) fetchTransactions();
+  }, [token]);
 
   const handleAddTransaction = () => {
     const newTransaction = {
       amount: 100,
-      category: 'income',
-      description: 'Salary',
-      date: '2025-05-23',
+      note: "Freelance Work",
+      t_type: "IN", // or "EX"
+      date: new Date().toISOString().slice(0, 10), // "YYYY-MM-DD"
     };
     addTransaction(newTransaction);
   };
@@ -23,9 +23,9 @@ const TransactionList = () => {
       <h1>Transactions</h1>
       <button onClick={handleAddTransaction}>Add Transaction</button>
       <ul>
-        {transactions.map((transaction) => (
-          <li key={transaction.id}>
-            {transaction.description} - ${transaction.amount}
+        {transactions.map((txn) => (
+          <li key={txn.id}>
+            {txn.note} - ₹{txn.amount} ({txn.t_type})
           </li>
         ))}
       </ul>

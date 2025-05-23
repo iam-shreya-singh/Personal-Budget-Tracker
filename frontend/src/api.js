@@ -14,8 +14,7 @@ export const fetchTransactions = async (token) => {
 export const fetchBudget = async (token) => {
   const response = await axios.get(`${API_URL}budgets/`, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`},
   })
   return response.data
 }
