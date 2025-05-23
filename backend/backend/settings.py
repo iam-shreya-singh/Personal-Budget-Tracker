@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://personal-budget-tracker-kappa.vercel.app",
+    "https://personal-budget-tracker-lss5.onrender.com/",
 ]
 
 ROOT_URLCONF = "backend.urls"
